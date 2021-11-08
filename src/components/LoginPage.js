@@ -3,7 +3,7 @@ import SignUp from "./SignUp"
 import { useHistory } from "react-router-dom"
 import axios from "axios"
 
-function Login({ setLoginResponse }) {
+function LoginPage({ setLoginResponse }) {
     const [loginDetails, setLoginDetails] = useState({ username: "", password: "" })
     let history = useHistory()
 
@@ -51,4 +51,4 @@ function Login({ setLoginResponse }) {
     )
 }
 
-export default Login
+export default LoginPage

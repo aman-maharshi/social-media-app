@@ -23,7 +23,6 @@ function SignUp() {
 
     const handleFormSubmit = async e => {
         e.preventDefault()
-
         if (userDetails.username && userDetails.email && userDetails.password) {
             setLoading(true)
             try {
@@ -31,7 +30,9 @@ function SignUp() {
                 setMessage("SignUp Successful")
                 setLoading(false)
             } catch (e) {
-                setMessage("Unable to SignUp!")
+                if (e.response) {
+                    setMessage(e.response.data.join(" "))
+                }
                 setLoading(false)
             }
         }

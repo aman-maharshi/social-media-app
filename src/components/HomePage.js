@@ -1,20 +1,13 @@
-import { useState } from "react"
 import { Link, useParams, useHistory } from "react-router-dom"
 import CreatePost from "./CreatePost"
 
-function Home({ loginResponse, setLoginResponse }) {
-    const [showCreatePost, setShowCreatePost] = useState(false)
-
+function HomePage({ loginResponse, setLoginResponse }) {
     let { id } = useParams()
     let history = useHistory()
 
     const handleLogout = () => {
         setLoginResponse(null)
         history.push("/")
-    }
-
-    const toggleShowCreatePost = () => {
-        setShowCreatePost(!showCreatePost)
     }
 
     return (
@@ -32,22 +25,7 @@ function Home({ loginResponse, setLoginResponse }) {
                             </button>
                         </div>
                     </header>
-                    {showCreatePost ? (
-                        <div className="pageContent">
-                            <div className="button-wrapper-right">
-                                <button onClick={toggleShowCreatePost} className="close">
-                                    ✕
-                                </button>
-                            </div>
-                            <CreatePost />
-                        </div>
-                    ) : (
-                        <div className="pageContent pageContent--noBg">
-                            <div className="button-wrapper-right">
-                                <button onClick={toggleShowCreatePost}>Create Post</button>
-                            </div>
-                        </div>
-                    )}
+                    <CreatePost loginResponse={loginResponse} />
                     <div className="pageContent">
                         <h2>Hello {loginResponse.username}, your feed is empty</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt nesciunt expedita mollitia adipisci dolorum optio aperiam quod, quo eum, dolores delectus voluptates aspernatur alias! Deserunt aspernatur nihil minima rerum ducimus.</p>
@@ -67,4 +45,4 @@ function Home({ loginResponse, setLoginResponse }) {
     )
 }
 
-export default Home
+export default HomePage

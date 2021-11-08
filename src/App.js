@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import Login from "./components/Login"
-import Home from "./components/Home"
+import LoginPage from "./components/LoginPage"
+import HomePage from "./components/HomePage"
 import NotFound from "./components/NotFound"
 
 function App() {
@@ -18,10 +18,10 @@ function App() {
                 <Router>
                     <Switch>
                         <Route exact path="/">
-                            <Login setLoginResponse={setLoginResponse} />
+                            <LoginPage setLoginResponse={setLoginResponse} />
                         </Route>
                         <Route path="/user/:id">
-                            <Home loginResponse={loginResponse} setLoginResponse={setLoginResponse} />
+                            <HomePage loginResponse={loginResponse} setLoginResponse={setLoginResponse} />
                         </Route>
                         <Route>
                             <NotFound />
