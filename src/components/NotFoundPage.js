@@ -1,16 +1,16 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-function NotFoundPage() {
+function NotFoundPage({ title }) {
     return (
-        <div className="pageContent">
-            <div className="notLoggedIn">
-                <p>Page not found</p>
+        <main className="main">
+            <div className="contentWrapper contentWrapper--center">
+                <p>{title}</p>
                 <button>
                     <Link to="/">← Home</Link>
                 </button>
             </div>
-        </div>
+        </main>
     )
 }
 

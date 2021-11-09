@@ -32,7 +32,7 @@ function App() {
                             <HomePage loginResponse={loginResponse} setLoginResponse={setLoginResponse} />
                         </Route>
                         <Route>
-                            <NotFoundPage />
+                            <NotFoundPage title="Page not found" />
                         </Route>
                     </Switch>
                 </Router>

@@ -46,7 +46,7 @@ function CreatePost({ loginResponse }) {
     return (
         <>
             {showCreatePost ? (
-                <div className="pageContent">
+                <div className="contentWrapper">
                     <div className="button-wrapper-right">
                         <button onClick={toggleShowCreatePost} className="close">
                             ✕
@@ -60,7 +60,7 @@ function CreatePost({ loginResponse }) {
                     </form>
                 </div>
             ) : (
-                <div className="pageContent pageContent--noBg">
+                <div className="contentWrapper contentWrapper--noBg">
                     <div className="button-wrapper-right">
                         <button onClick={toggleShowCreatePost}>Create Post</button>
                     </div>

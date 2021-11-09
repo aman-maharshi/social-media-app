@@ -25,7 +25,7 @@ textarea {
 .appWrapper {
     min-height: 90vh;
 }
-.pageContent {
+.contentWrapper {
     max-width: 800px;
     margin: 0 auto;
     padding: 1rem;
@@ -35,15 +35,16 @@ textarea {
     border: 1px solid #dbdbdb;
     line-height: 1.25;
 }
-.pageContent--noBg {
+.contentWrapper--noBg {
     background: none;
     padding: 0;
     border: 0;
 }
-.notLoggedIn {
-    max-width: 600px;
-    margin: 0 auto;
+.contentWrapper--center {
     text-align: center;
+}
+.main {
+    padding: 1rem;
 }
 
 /*
@@ -52,6 +53,13 @@ textarea {
 .button-wrapper-right {
     display: flex;
     justify-content: flex-end;
+}
+.button-wrapper-left {
+    display: flex;
+    justify-content: flex-start;
+}
+.button-wrapper-left button {
+    margin-right: 1rem;
 }
 button {
     cursor: pointer;
@@ -69,6 +77,15 @@ button.secondary {
 }
 button a {
     color: white;
+}
+button.link {
+    border: none;
+    background: none;
+    font-weight: bold;
+    color: #0095f6;
+}
+button.link a {
+    color: inherit;
 }
 
 /*

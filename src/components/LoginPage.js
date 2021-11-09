@@ -2,11 +2,11 @@ import SignUp from "./SignUp"
 
 function LoginPage({ setLoginResponse }) {
     return (
-        <div className="login">
-            <div className="pageContent">
+        <main className="main">
+            <div className="contentWrapper">
                 <SignUp />
             </div>
-        </div>
+        </main>
     )
 }
 
