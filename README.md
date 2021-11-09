@@ -9,13 +9,9 @@
 5. Follow / UnFollow different users
 6. User Feed
 
----
-
 ## API -
 
 https://github.com/LearnWebCode/practice-api
-
----
 
 ## Backend -
 

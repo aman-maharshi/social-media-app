@@ -23,7 +23,7 @@ textarea {
     text-align: center;
 }
 .appWrapper {
-    min-height: 92vh;
+    min-height: 90vh;
 }
 .pageContent {
     max-width: 800px;
@@ -152,8 +152,7 @@ textarea {
     align-items: center;
 }
 .home__card .avatar {
-    width: 50px;
-    margin-right: 10px;
+    width: 38px;
     border-radius: 50%;
     background: gray;
 }
@@ -165,7 +164,7 @@ textarea {
     display: block;
 }
 .home__card .username {
-    margin-right: 1rem;
+    margin: 0 1rem;
 }
 
 /*

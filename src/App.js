@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+
 import LoginPage from "./components/LoginPage"
 import HomePage from "./components/HomePage"
-import NotFound from "./components/NotFound"
+import NotFoundPage from "./components/NotFoundPage"
+import Header from "./components/Header"
+
+import axios from "axios"
+axios.defaults.baseURL = "http://localhost:8080"
 
 function App() {
     const lsLoginResponse = JSON.parse(localStorage.getItem("loginResponse"))
@@ -16,15 +21,18 @@ function App() {
         <>
             <div className="appWrapper">
                 <Router>
+                    <header className="header">
+                        <Header loginResponse={loginResponse} setLoginResponse={setLoginResponse} />
+                    </header>
                     <Switch>
                         <Route exact path="/">
                             <LoginPage setLoginResponse={setLoginResponse} />
                         </Route>
-                        <Route path="/user/:id">
+                        <Route path="/user/:userId">
                             <HomePage loginResponse={loginResponse} setLoginResponse={setLoginResponse} />
                         </Route>
                         <Route>
-                            <NotFound />
+                            <NotFoundPage />
                         </Route>
                     </Switch>
                 </Router>

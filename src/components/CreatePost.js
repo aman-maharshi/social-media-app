@@ -6,6 +6,7 @@ function CreatePost({ loginResponse }) {
     const [postTitle, setPostTitle] = useState("")
     const [postBody, setPostBody] = useState("")
     const [message, setMessage] = useState("")
+    // const [postId, setPostId] = useState("")
 
     useEffect(() => {
         let hideMessage = setTimeout(() => setMessage(""), 2500)
@@ -28,10 +29,11 @@ function CreatePost({ loginResponse }) {
         }
 
         try {
-            const response = await axios.post("http://localhost:8080/create-post", newPostData)
+            const response = await axios.post("/create-post", newPostData)
             if (Array.isArray(response.data)) {
                 setMessage(response.data.join(" "))
             } else {
+                // setPostId(response.data)
                 setMessage("Post created successfully")
             }
         } catch (e) {
@@ -51,7 +53,7 @@ function CreatePost({ loginResponse }) {
                         </button>
                     </div>
                     <form className="signup__form" onSubmit={handleFormSubmit}>
-                        <input value={postTitle} onChange={e => setPostTitle(e.target.value)} type="text" name="username" placeholder="Post Title" />
+                        <input autoFocus value={postTitle} onChange={e => setPostTitle(e.target.value)} type="text" name="username" placeholder="Post Title" />
                         <textarea value={postBody} onChange={e => setPostBody(e.target.value)} name="post" rows="7" placeholder="Post Description"></textarea>
                         <button type="submit">Create Post</button>
                         <p className="message">{message}</p>

@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-function NotFound() {
+function NotFoundPage() {
     return (
         <div className="pageContent">
             <div className="notLoggedIn">
@@ -14,4 +14,4 @@ function NotFound() {
     )
 }
 
-export default NotFound
+export default NotFoundPage

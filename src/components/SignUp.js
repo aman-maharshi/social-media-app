@@ -26,7 +26,7 @@ function SignUp() {
         if (userDetails.username && userDetails.email && userDetails.password) {
             setLoading(true)
             try {
-                await axios.post("http://localhost:8080/register", userDetails)
+                await axios.post("/register", userDetails)
                 setMessage("SignUp Successful")
                 setLoading(false)
             } catch (e) {

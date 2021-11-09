@@ -1,30 +1,13 @@
-import { Link, useParams, useHistory } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import CreatePost from "./CreatePost"
 
 function HomePage({ loginResponse, setLoginResponse }) {
-    let { id } = useParams()
-    let history = useHistory()
-
-    const handleLogout = () => {
-        setLoginResponse(null)
-        history.push("/")
-    }
+    let { userId } = useParams()
 
     return (
         <>
-            {loginResponse && id === loginResponse.username ? (
+            {loginResponse && userId === loginResponse.username ? (
                 <div className="home">
-                    <header className="header">
-                        <div className="home__card">
-                            <div className="avatar">
-                                <img src={loginResponse.avatar} alt="user-avatar" />
-                            </div>
-                            <h3 className="username">{loginResponse.username}</h3>
-                            <button onClick={handleLogout} className="secondary">
-                                Logout
-                            </button>
-                        </div>
-                    </header>
                     <CreatePost loginResponse={loginResponse} />
                     <div className="pageContent">
                         <h2>Hello {loginResponse.username}, your feed is empty</h2>
