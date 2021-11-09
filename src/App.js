@@ -5,6 +5,7 @@ import LoginPage from "./components/LoginPage"
 import HomePage from "./components/HomePage"
 import NotFoundPage from "./components/NotFoundPage"
 import Header from "./components/Header"
+import FlashMessage from "./components/FlashMessage"
 
 import axios from "axios"
 axios.defaults.baseURL = "http://localhost:8080"
@@ -12,6 +13,7 @@ axios.defaults.baseURL = "http://localhost:8080"
 function App() {
     const lsLoginResponse = JSON.parse(localStorage.getItem("loginResponse"))
     const [loginResponse, setLoginResponse] = useState(lsLoginResponse ? lsLoginResponse : null)
+    const [flashMessage, setFlashMessage] = useState(null)
 
     useEffect(() => {
         localStorage.setItem("loginResponse", JSON.stringify(loginResponse))
@@ -22,14 +24,14 @@ function App() {
             <div className="appWrapper">
                 <Router>
                     <header className="header">
-                        <Header loginResponse={loginResponse} setLoginResponse={setLoginResponse} />
+                        <Header loginResponse={loginResponse} setLoginResponse={setLoginResponse} setFlashMessage={setFlashMessage} />
                     </header>
                     <Switch>
                         <Route exact path="/">
                             <LoginPage setLoginResponse={setLoginResponse} />
                         </Route>
                         <Route path="/user/:userId">
-                            <HomePage loginResponse={loginResponse} setLoginResponse={setLoginResponse} />
+                            <HomePage loginResponse={loginResponse} />
                         </Route>
                         <Route>
                             <NotFoundPage title="Page not found" />
@@ -38,6 +40,7 @@ function App() {
                 </Router>
             </div>
             <footer className="footer">
+                <FlashMessage flashMessage={flashMessage} setFlashMessage={setFlashMessage} />
                 <p>
                     Designed and Coded by <a href="https://amanmaharshi.com">Aman Maharshi</a>
                 </p>

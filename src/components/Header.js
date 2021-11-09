@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import axios from "axios"
 
-function Header({ loginResponse, setLoginResponse }) {
+function Header({ loginResponse, setLoginResponse, setFlashMessage }) {
     const [loginDetails, setLoginDetails] = useState({ username: "", password: "" })
 
     let history = useHistory()
@@ -31,6 +31,8 @@ function Header({ loginResponse, setLoginResponse }) {
                 console.log("Unable to login")
                 setLoginDetails({ username: "", password: "" })
             }
+        } else {
+            setFlashMessage("Invalid login credentials")
         }
     }
 

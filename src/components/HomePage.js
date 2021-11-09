@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom"
 import CreatePost from "./CreatePost"
 import NotFoundPage from "./NotFoundPage"
 
-function HomePage({ loginResponse, setLoginResponse }) {
+function HomePage({ loginResponse }) {
     let { userId } = useParams()
 
     return (
