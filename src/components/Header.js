@@ -24,11 +24,11 @@ function Header({ loginResponse, setLoginResponse, setFlashMessage }) {
                     setLoginDetails({ username: "", password: "" })
                     history.push(`user/${loginDetails.username}`)
                 } else {
-                    console.log("Incorrect username / password")
+                    setFlashMessage("Incorrect username / password")
                     setLoginDetails({ username: "", password: "" })
                 }
             } catch (e) {
-                console.log("Unable to login")
+                setFlashMessage("Unable to login")
                 setLoginDetails({ username: "", password: "" })
             }
         } else {

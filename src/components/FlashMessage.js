@@ -4,7 +4,7 @@ function FlashMessage({ flashMessage, setFlashMessage }) {
     let messageClass = flashMessage ? "flashMessage flashMessage--show" : "flashMessage"
 
     useEffect(() => {
-        let hideMessage = setTimeout(() => setFlashMessage(null), 2500)
+        let hideMessage = setTimeout(() => setFlashMessage(null), 3000)
         return () => {
             clearTimeout(hideMessage)
         }

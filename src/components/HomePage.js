@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom"
 import CreatePost from "./CreatePost"
 import NotFoundPage from "./NotFoundPage"
 
-function HomePage({ loginResponse }) {
+function HomePage({ loginResponse, setFlashMessage }) {
     let { userId } = useParams()
 
     return (
@@ -17,7 +17,7 @@ function HomePage({ loginResponse }) {
                             <button className="link">My Posts</button>
                         </div>
                     </div>
-                    <CreatePost loginResponse={loginResponse} />
+                    <CreatePost loginResponse={loginResponse} setFlashMessage={setFlashMessage} />
                     <div className="contentWrapper">
                         <h2>Hello {loginResponse.username}, your feed is empty</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt nesciunt expedita mollitia adipisci dolorum optio aperiam quod, quo eum, dolores delectus voluptates aspernatur alias! Deserunt aspernatur nihil minima rerum ducimus.</p>

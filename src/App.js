@@ -28,10 +28,10 @@ function App() {
                     </header>
                     <Switch>
                         <Route exact path="/">
-                            <LoginPage setLoginResponse={setLoginResponse} />
+                            <LoginPage setFlashMessage={setFlashMessage} />
                         </Route>
                         <Route path="/user/:userId">
-                            <HomePage loginResponse={loginResponse} />
+                            <HomePage loginResponse={loginResponse} setFlashMessage={setFlashMessage} />
                         </Route>
                         <Route>
                             <NotFoundPage title="Page not found" />

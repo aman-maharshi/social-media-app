@@ -1,20 +1,11 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import axios from "axios"
 
-function CreatePost({ loginResponse }) {
+function CreatePost({ loginResponse, setFlashMessage }) {
     const [showCreatePost, setShowCreatePost] = useState(false)
     const [postTitle, setPostTitle] = useState("")
     const [postBody, setPostBody] = useState("")
-    const [message, setMessage] = useState("")
     // const [postId, setPostId] = useState("")
-
-    useEffect(() => {
-        let hideMessage = setTimeout(() => setMessage(""), 2500)
-
-        return () => {
-            clearTimeout(hideMessage)
-        }
-    }, [message])
 
     const toggleShowCreatePost = () => {
         setShowCreatePost(!showCreatePost)
@@ -31,13 +22,13 @@ function CreatePost({ loginResponse }) {
         try {
             const response = await axios.post("/create-post", newPostData)
             if (Array.isArray(response.data)) {
-                setMessage(response.data.join(" "))
+                setFlashMessage(response.data.join(" "))
             } else {
                 // setPostId(response.data)
-                setMessage("Post created successfully")
+                setFlashMessage("Post created successfully")
             }
         } catch (e) {
-            setMessage("Unable to create new post")
+            setFlashMessage("Unable to create new post")
         }
 
         setPostTitle("")
@@ -56,7 +47,6 @@ function CreatePost({ loginResponse }) {
                         <input autoFocus value={postTitle} onChange={e => setPostTitle(e.target.value)} type="text" name="username" placeholder="Post Title" />
                         <textarea value={postBody} onChange={e => setPostBody(e.target.value)} name="post" rows="7" placeholder="Post Description"></textarea>
                         <button type="submit">Create Post</button>
-                        <p className="message">{message}</p>
                     </form>
                 </div>
             ) : (

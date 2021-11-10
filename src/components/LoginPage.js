@@ -1,18 +1,9 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import axios from "axios"
 
-function LoginPage({ setLoginResponse }) {
+function LoginPage({ setFlashMessage }) {
     const [userDetails, setUserDetails] = useState({ username: "", email: "", password: "" })
-    const [message, setMessage] = useState("")
     const [loading, setLoading] = useState(false)
-
-    useEffect(() => {
-        let hideMessage = setTimeout(() => setMessage(""), 2500)
-
-        return () => {
-            clearTimeout(hideMessage)
-        }
-    }, [message])
 
     const handleInputChange = e => {
         setUserDetails({
@@ -27,14 +18,16 @@ function LoginPage({ setLoginResponse }) {
             setLoading(true)
             try {
                 await axios.post("/register", userDetails)
-                setMessage("SignUp Successful")
+                setFlashMessage("SignUp Successful")
                 setLoading(false)
             } catch (e) {
                 if (e.response) {
-                    setMessage(e.response.data.join(" "))
+                    setFlashMessage(e.response.data.join(" "))
                 }
                 setLoading(false)
             }
+        } else {
+            setFlashMessage("All fields are required")
         }
 
         setUserDetails({ username: "", email: "", password: "" })
@@ -48,7 +41,6 @@ function LoginPage({ setLoginResponse }) {
                     <input value={userDetails.email} onChange={handleInputChange} type="email" name="email" placeholder="email" />
                     <input value={userDetails.password} onChange={handleInputChange} type="password" name="password" placeholder="password" />
                     <button type="submit">Sign Up {loading && <img src="/spinner.gif" alt="spinner" />}</button>
-                    <p className="message">{message}</p>
                 </form>
             </div>
         </main>
