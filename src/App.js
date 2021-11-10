@@ -6,6 +6,7 @@ import HomePage from "./components/HomePage"
 import NotFoundPage from "./components/NotFoundPage"
 import Header from "./components/Header"
 import FlashMessage from "./components/FlashMessage"
+import AllPosts from "./components/AllPosts"
 
 import axios from "axios"
 axios.defaults.baseURL = "http://localhost:8080"
@@ -32,6 +33,9 @@ function App() {
                         </Route>
                         <Route path="/user/:userId">
                             <HomePage loginResponse={loginResponse} setFlashMessage={setFlashMessage} />
+                        </Route>
+                        <Route path="/myposts">
+                            <AllPosts loginResponse={loginResponse} setFlashMessage={setFlashMessage} />
                         </Route>
                         <Route>
                             <NotFoundPage title="Page not found" />

@@ -87,6 +87,9 @@ button.link {
 button.link a {
     color: inherit;
 }
+button.link-active a {
+    text-decoration: underline;
+}
 
 /*
     HEADER
