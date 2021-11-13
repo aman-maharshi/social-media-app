@@ -1,9 +1,12 @@
-import React from "react"
+import { useContext } from "react"
 import { Link } from "react-router-dom"
 import CreatePost from "./CreatePost"
 import NotFoundPage from "./NotFoundPage"
+import UserContext from "../UserContext"
 
-function AllPosts({ loginResponse, setFlashMessage }) {
+function AllPosts() {
+    const { setFlashMessage, loginResponse } = useContext(UserContext)
+
     return (
         <>
             {loginResponse ? (

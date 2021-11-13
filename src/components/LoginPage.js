@@ -1,7 +1,9 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import axios from "axios"
+import UserContext from "../UserContext"
 
-function LoginPage({ setFlashMessage }) {
+function LoginPage() {
+    const { setFlashMessage } = useContext(UserContext)
     const [userDetails, setUserDetails] = useState({ username: "", email: "", password: "" })
     const [loading, setLoading] = useState(false)
 

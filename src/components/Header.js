@@ -1,9 +1,11 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { useHistory } from "react-router-dom"
 import axios from "axios"
+import UserContext from "../UserContext"
 
-function Header({ loginResponse, setLoginResponse, setFlashMessage }) {
+function Header({ setLoginResponse }) {
     const [loginDetails, setLoginDetails] = useState({ username: "", password: "" })
+    const { setFlashMessage, loginResponse } = useContext(UserContext)
 
     let history = useHistory()
 

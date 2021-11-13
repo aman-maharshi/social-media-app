@@ -1,8 +1,10 @@
-import React from "react"
+import { useContext } from "react"
 import { Link } from "react-router-dom"
 import NotFoundPage from "./NotFoundPage"
+import UserContext from "../UserContext"
 
-function SinglePost({ loginResponse }) {
+function SinglePost() {
+    const { loginResponse } = useContext(UserContext)
     return (
         <>
             {loginResponse ? (

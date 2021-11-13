@@ -8,6 +8,7 @@ import Header from "./components/Header"
 import FlashMessage from "./components/FlashMessage"
 import AllPosts from "./components/AllPosts"
 import SinglePost from "./components/SinglePost"
+import UserContext from "./UserContext"
 
 import axios from "axios"
 axios.defaults.baseURL = "http://localhost:8080"
@@ -21,38 +22,42 @@ function App() {
         localStorage.setItem("loginResponse", JSON.stringify(loginResponse))
     }, [loginResponse])
 
+    const contextObject = { setFlashMessage, loginResponse }
+
     return (
         <>
-            <div className="appWrapper">
-                <Router>
-                    <header className="header">
-                        <Header loginResponse={loginResponse} setLoginResponse={setLoginResponse} setFlashMessage={setFlashMessage} />
-                    </header>
-                    <Switch>
-                        <Route exact path="/">
-                            <LoginPage setFlashMessage={setFlashMessage} />
-                        </Route>
-                        <Route path="/user/:userId">
-                            <HomePage loginResponse={loginResponse} setFlashMessage={setFlashMessage} />
-                        </Route>
-                        <Route path="/myposts">
-                            <AllPosts loginResponse={loginResponse} setFlashMessage={setFlashMessage} />
-                        </Route>
-                        <Route path="/post/:postId">
-                            <SinglePost loginResponse={loginResponse} />
-                        </Route>
-                        <Route>
-                            <NotFoundPage title="Page not found" />
-                        </Route>
-                    </Switch>
-                </Router>
-            </div>
-            <footer className="footer">
-                <FlashMessage flashMessage={flashMessage} setFlashMessage={setFlashMessage} />
-                <p>
-                    Designed and Coded by <a href="https://amanmaharshi.com">Aman Maharshi</a>
-                </p>
-            </footer>
+            <UserContext.Provider value={contextObject}>
+                <div className="appWrapper">
+                    <Router>
+                        <header className="header">
+                            <Header setLoginResponse={setLoginResponse} />
+                        </header>
+                        <Switch>
+                            <Route exact path="/">
+                                <LoginPage />
+                            </Route>
+                            <Route path="/user/:userId">
+                                <HomePage />
+                            </Route>
+                            <Route path="/myposts">
+                                <AllPosts />
+                            </Route>
+                            <Route path="/post/:postId">
+                                <SinglePost />
+                            </Route>
+                            <Route>
+                                <NotFoundPage title="Page not found" />
+                            </Route>
+                        </Switch>
+                    </Router>
+                </div>
+                <footer className="footer">
+                    <FlashMessage flashMessage={flashMessage} />
+                    <p>
+                        Designed and Coded by <a href="https://amanmaharshi.com">Aman Maharshi</a>
+                    </p>
+                </footer>
+            </UserContext.Provider>
         </>
     )
 }

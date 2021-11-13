@@ -1,6 +1,8 @@
-import { useEffect } from "react"
+import { useEffect, useContext } from "react"
+import UserContext from "../UserContext"
 
-function FlashMessage({ flashMessage, setFlashMessage }) {
+function FlashMessage({ flashMessage }) {
+    const { setFlashMessage } = useContext(UserContext)
     let messageClass = flashMessage ? "flashMessage flashMessage--show" : "flashMessage"
 
     useEffect(() => {

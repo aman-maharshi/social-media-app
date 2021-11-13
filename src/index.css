@@ -203,6 +203,10 @@ textarea {
 .footer a {
     color: inherit;
 }
+
+/*
+    FLASH MESSAGES
+--------------------*/
 .flashMessage {
     position: absolute;
     top: 3rem;
