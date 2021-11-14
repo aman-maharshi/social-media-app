@@ -101,6 +101,53 @@ button.link-active a {
     justify-content: flex-end;
     border-bottom: 1px solid #dbdbdb;
 }
+.home__card {
+    display: flex;
+    align-items: center;
+}
+.home__card .avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: lightgray;
+}
+.home__card .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+.home__card .username {
+    margin: 0 0 0 1rem;
+}
+.profileLink {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+    padding: 0 1rem;
+    transition: 0.3s;
+    border-right: 2px solid #dbdbdb;
+    text-shadow: 3px 3px 5px #c2c2c2;
+}
+.profileLink:hover {
+    color: #0095f6;
+}
+.home__card .profileLink--feed h3 {
+    margin-left: 0;
+}
+.logoutBtn {
+    background: none;
+    color: black;
+    transition: 0.3s;
+}
+.logoutBtn:hover {
+    color: #0095f6;
+}
+.logoutBtn h3 {
+    margin: 0;
+    text-shadow: 3px 3px 5px #c2c2c2;
+}
 
 /*
     SIGNUP & CREATEP POST FORM
@@ -165,29 +212,6 @@ textarea {
 }
 
 /*
-    HOME
-*/
-.home__card {
-    display: flex;
-    align-items: center;
-}
-.home__card .avatar {
-    width: 38px;
-    border-radius: 50%;
-    background: gray;
-}
-.home__card .avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    display: block;
-}
-.home__card .username {
-    margin: 0 1rem;
-}
-
-/*
     FOOTER
 */
 .footer {
@@ -203,7 +227,49 @@ textarea {
 .footer a {
     color: inherit;
 }
-
+.posts {
+    font-size: 1.2rem;
+}
+.posts ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.posts li {
+    padding: 10px 5px;
+    border: 1px solid lightgray;
+    border-bottom: 0;
+}
+.posts li:hover {
+    text-decoration: underline;
+}
+.posts li:last-child {
+    border-bottom: 1px solid lightgray;
+}
+/*
+    PROFILE
+--------------------*/
+.profileTitleRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.profileTitleRow .avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: lightgray;
+}
+.profileTitleRow .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+.profileTitleRow .username {
+    margin: 0 1rem;
+}
 /*
     FLASH MESSAGES
 --------------------*/

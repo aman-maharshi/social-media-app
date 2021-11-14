@@ -2,6 +2,7 @@ import { useState, useContext } from "react"
 import { useHistory } from "react-router-dom"
 import axios from "axios"
 import UserContext from "../UserContext"
+import { Link } from "react-router-dom"
 
 function Header({ setLoginResponse }) {
     const [loginDetails, setLoginDetails] = useState({ username: "", password: "" })
@@ -47,12 +48,18 @@ function Header({ setLoginResponse }) {
         <>
             {loginResponse ? (
                 <div className="home__card">
-                    <div className="avatar">
-                        <img src={loginResponse.avatar} alt="user-avatar" />
-                    </div>
-                    <h3 className="username">{loginResponse.username}</h3>
-                    <button onClick={handleLogout} className="secondary">
-                        Logout
+                    <Link to={`/user/${loginResponse.username}`} className="profileLink profileLink--feed">
+                        <h3 className="username">Feed</h3>
+                    </Link>
+
+                    <Link to={`/profile/${loginResponse.username}`} className="profileLink">
+                        <div className="avatar">
+                            <img src={loginResponse.avatar} alt="user-avatar" />
+                        </div>
+                        <h3 className="username">{loginResponse.username}</h3>
+                    </Link>
+                    <button onClick={handleLogout} className="logoutBtn">
+                        <h3>Logout</h3>
                     </button>
                 </div>
             ) : (

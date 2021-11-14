@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import UserContext from "./UserContext"
 
+// Components
 import LoginPage from "./components/LoginPage"
 import HomePage from "./components/HomePage"
 import NotFoundPage from "./components/NotFoundPage"
 import Header from "./components/Header"
 import FlashMessage from "./components/FlashMessage"
-import AllPosts from "./components/AllPosts"
 import SinglePost from "./components/SinglePost"
-import UserContext from "./UserContext"
+import Profile from "./components/Profile"
 
 import axios from "axios"
 axios.defaults.baseURL = "http://localhost:8080"
@@ -39,8 +40,8 @@ function App() {
                             <Route path="/user/:userId">
                                 <HomePage />
                             </Route>
-                            <Route path="/myposts">
-                                <AllPosts />
+                            <Route path="/profile/:username">
+                                <Profile />
                             </Route>
                             <Route path="/post/:postId">
                                 <SinglePost />
