@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import axios from "axios"
 import { Link } from "react-router-dom"
 
+import CreatePost from "./CreatePost"
 import NotFoundPage from "./NotFoundPage"
 
 const Profile = () => {
@@ -12,21 +13,23 @@ const Profile = () => {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        const loadPosts = async () => {
-            try {
-                const response = await axios.get(`/profile/${username}/posts`)
-                setPosts(response.data)
-            } catch (e) {
-                console.log("Unable to get posts.")
-            }
-        }
         loadPosts()
-    }, [username])
+    }, [username, posts])
+
+    const loadPosts = async () => {
+        try {
+            const response = await axios.get(`/profile/${username}/posts`)
+            setPosts(response.data)
+        } catch (e) {
+            console.log("Unable to get posts.")
+        }
+    }
 
     return (
         <>
             {loginResponse && username === loginResponse.username ? (
                 <div className="main">
+                    <CreatePost loginResponse={loginResponse} setFlashMessage={setFlashMessage} />
                     <div className="contentWrapper contentWrapper--noBg">
                         <div className="profileTitleRow">
                             <div className="avatar">
@@ -49,7 +52,7 @@ const Profile = () => {
                                         )
                                     })
                                 ) : (
-                                    <li>Loading...</li>
+                                    <li>Loading ...</li>
                                 )}
                             </ul>
                         </div>
