@@ -5,7 +5,6 @@ function CreatePost({ loginResponse, setFlashMessage }) {
     const [showCreatePost, setShowCreatePost] = useState(false)
     const [postTitle, setPostTitle] = useState("")
     const [postBody, setPostBody] = useState("")
-    // const [postId, setPostId] = useState("")
 
     const toggleShowCreatePost = () => {
         setShowCreatePost(!showCreatePost)

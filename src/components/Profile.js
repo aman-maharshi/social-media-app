@@ -2,66 +2,59 @@ import { useContext, useState, useEffect } from "react"
 import UserContext from "../UserContext"
 import { useParams } from "react-router-dom"
 import axios from "axios"
-import { Link } from "react-router-dom"
 
 import CreatePost from "./CreatePost"
 import NotFoundPage from "./NotFoundPage"
+import ProfilePosts from "./ProfilePosts"
 
 const Profile = () => {
     let { username } = useParams()
     const { setFlashMessage, loginResponse } = useContext(UserContext)
-    const [posts, setPosts] = useState([])
+    const [profileInfo, setProfileInfo] = useState({
+        counts: { postCount: 0, followerCount: 0, followingCount: 0 },
+        isFollowing: false,
+        profileAvatar: "",
+        profileUsername: ""
+    })
 
     useEffect(() => {
-        loadPosts()
-    }, [username, posts])
+        getProfileInfo()
+    }, [])
 
-    const loadPosts = async () => {
+    const getProfileInfo = async () => {
         try {
-            const response = await axios.get(`/profile/${username}/posts`)
-            setPosts(response.data)
+            const response = await axios.post(`/profile/${username}`, { token: loginResponse.token })
+            setProfileInfo(response.data)
+            console.log("run: profileInfo")
         } catch (e) {
-            console.log("Unable to get posts.")
+            console.log("Unable to get profile info")
         }
     }
 
+    if (!loginResponse) return <NotFoundPage title="Login to view this page." />
+
     return (
-        <>
-            {loginResponse && username === loginResponse.username ? (
-                <div className="main">
-                    <CreatePost loginResponse={loginResponse} setFlashMessage={setFlashMessage} />
-                    <div className="contentWrapper contentWrapper--noBg">
-                        <div className="profileTitleRow">
-                            <div className="avatar">
-                                <img src={loginResponse.avatar} alt="user-avatar" />
-                            </div>
-                            <h3 className="username">{loginResponse.username}</h3>
-                            <button>Follow</button>
-                        </div>
+        <div className="main">
+            <CreatePost loginResponse={loginResponse} setFlashMessage={setFlashMessage} />
+            <div className="contentWrapper contentWrapper--noBg">
+                <div className="profileTitleRow">
+                    <div className="avatar">
+                        <img src={loginResponse.avatar} alt="user-avatar" />
                     </div>
-                    <div className="contentWrapper">
-                        <h2>Posts</h2>
-                        <div className="posts">
-                            <ul>
-                                {posts.length ? (
-                                    posts.map(item => {
-                                        return (
-                                            <li key={item._id}>
-                                                <Link to={`/post/${item._id}`}>{item.title}</Link>
-                                            </li>
-                                        )
-                                    })
-                                ) : (
-                                    <li>Loading ...</li>
-                                )}
-                            </ul>
-                        </div>
-                    </div>
+                    <h3 className="username">{loginResponse.username}</h3>
+                    <button>Follow</button>
                 </div>
-            ) : (
-                <NotFoundPage title="Login to view this page." />
-            )}
-        </>
+            </div>
+            <div className="contentWrapper">
+                <div className="profileNav">
+                    <button>Posts ({profileInfo.counts.postCount})</button>
+                    <button>Followers ({profileInfo.counts.followerCount})</button>
+                    <button>Following ({profileInfo.counts.followingCount})</button>
+                </div>
+
+                <ProfilePosts />
+            </div>
+        </div>
     )
 }
 
